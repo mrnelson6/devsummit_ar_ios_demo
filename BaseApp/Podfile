@@ -1,0 +1,11 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+pod 'ArcGIS-Runtime-SDK-iOS', '100.7'
+pod 'ArcGIS-Runtime-Toolkit-iOS'
+target 'BaseApp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for BaseApp
+
+end
