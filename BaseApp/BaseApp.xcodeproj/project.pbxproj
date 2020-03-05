@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,15 @@
 		F19B86DD24105D44002A2A4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F19B86DB24105D44002A2A4F /* Main.storyboard */; };
 		F19B86DF24105D44002A2A4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F19B86DE24105D44002A2A4F /* Assets.xcassets */; };
 		F19B86E224105D44002A2A4F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F19B86E024105D44002A2A4F /* LaunchScreen.storyboard */; };
+		F19B86EA2410741B002A2A4F /* AirplaneFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19B86E92410741B002A2A4F /* AirplaneFinder.swift */; };
+		F19B86EC2410742F002A2A4F /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19B86EB2410742F002A2A4F /* Plane.swift */; };
+		F19B86F52410746A002A2A4F /* Bristol.dae in Resources */ = {isa = PBXBuildFile; fileRef = F19B86EE2410746A002A2A4F /* Bristol.dae */; };
+		F19B86F62410746A002A2A4F /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F19B86EF2410746A002A2A4F /* logo.jpg */; };
+		F19B86F72410746A002A2A4F /* B_787_8.dae in Resources */ = {isa = PBXBuildFile; fileRef = F19B86F02410746A002A2A4F /* B_787_8.dae */; };
+		F19B86F82410746A002A2A4F /* texture.png in Resources */ = {isa = PBXBuildFile; fileRef = F19B86F12410746A002A2A4F /* texture.png */; };
+		F19B86F92410746A002A2A4F /* Thumbs.db in Resources */ = {isa = PBXBuildFile; fileRef = F19B86F22410746A002A2A4F /* Thumbs.db */; };
+		F19B86FA2410746A002A2A4F /* Bristol.png in Resources */ = {isa = PBXBuildFile; fileRef = F19B86F32410746A002A2A4F /* Bristol.png */; };
+		F19B86FB2410746A002A2A4F /* texture_ref.png in Resources */ = {isa = PBXBuildFile; fileRef = F19B86F42410746A002A2A4F /* texture_ref.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +37,15 @@
 		F19B86DE24105D44002A2A4F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F19B86E124105D44002A2A4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F19B86E324105D44002A2A4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F19B86E92410741B002A2A4F /* AirplaneFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirplaneFinder.swift; sourceTree = "<group>"; };
+		F19B86EB2410742F002A2A4F /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		F19B86EE2410746A002A2A4F /* Bristol.dae */ = {isa = PBXFileReference; explicitFileType = compiled; fileEncoding = 4; name = Bristol.dae; path = "../../../../../Downloads/OneDrive_1_3-3-2020/Bristol.dae"; sourceTree = "<group>"; };
+		F19B86EF2410746A002A2A4F /* logo.jpg */ = {isa = PBXFileReference; explicitFileType = compiled; name = logo.jpg; path = "../../../../../Downloads/OneDrive_1_3-3-2020/logo.jpg"; sourceTree = "<group>"; };
+		F19B86F02410746A002A2A4F /* B_787_8.dae */ = {isa = PBXFileReference; explicitFileType = compiled; fileEncoding = 4; name = B_787_8.dae; path = ../../../../../Downloads/B_787_8.dae; sourceTree = "<group>"; };
+		F19B86F12410746A002A2A4F /* texture.png */ = {isa = PBXFileReference; explicitFileType = compiled; name = texture.png; path = "../../../../../Downloads/OneDrive_1_3-3-2020/texture.png"; sourceTree = "<group>"; };
+		F19B86F22410746A002A2A4F /* Thumbs.db */ = {isa = PBXFileReference; explicitFileType = compiled; name = Thumbs.db; path = "../../../../../Downloads/OneDrive_1_3-3-2020/Thumbs.db"; sourceTree = "<group>"; };
+		F19B86F32410746A002A2A4F /* Bristol.png */ = {isa = PBXFileReference; explicitFileType = compiled; name = Bristol.png; path = "../../../../../Downloads/OneDrive_1_3-3-2020/Bristol.png"; sourceTree = "<group>"; };
+		F19B86F42410746A002A2A4F /* texture_ref.png */ = {isa = PBXFileReference; explicitFileType = compiled; name = texture_ref.png; path = "../../../../../Downloads/OneDrive_1_3-3-2020/texture_ref.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +74,6 @@
 				71AB2CB2E74B5579DB76FB1B /* Pods-BaseApp.debug.xcconfig */,
 				03839B001177CDBB57F6EE08 /* Pods-BaseApp.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -81,6 +98,7 @@
 		F19B86D424105D44002A2A4F /* BaseApp */ = {
 			isa = PBXGroup;
 			children = (
+				F19B86ED2410744E002A2A4F /* Models */,
 				F19B86D524105D44002A2A4F /* AppDelegate.swift */,
 				F19B86D724105D44002A2A4F /* SceneDelegate.swift */,
 				F19B86D924105D44002A2A4F /* ViewController.swift */,
@@ -88,8 +106,24 @@
 				F19B86DE24105D44002A2A4F /* Assets.xcassets */,
 				F19B86E024105D44002A2A4F /* LaunchScreen.storyboard */,
 				F19B86E324105D44002A2A4F /* Info.plist */,
+				F19B86E92410741B002A2A4F /* AirplaneFinder.swift */,
+				F19B86EB2410742F002A2A4F /* Plane.swift */,
 			);
 			path = BaseApp;
+			sourceTree = "<group>";
+		};
+		F19B86ED2410744E002A2A4F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F19B86F02410746A002A2A4F /* B_787_8.dae */,
+				F19B86EE2410746A002A2A4F /* Bristol.dae */,
+				F19B86F32410746A002A2A4F /* Bristol.png */,
+				F19B86EF2410746A002A2A4F /* logo.jpg */,
+				F19B86F42410746A002A2A4F /* texture_ref.png */,
+				F19B86F12410746A002A2A4F /* texture.png */,
+				F19B86F22410746A002A2A4F /* Thumbs.db */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,9 +186,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F19B86F92410746A002A2A4F /* Thumbs.db in Resources */,
 				F19B86E224105D44002A2A4F /* LaunchScreen.storyboard in Resources */,
+				F19B86F82410746A002A2A4F /* texture.png in Resources */,
+				F19B86FB2410746A002A2A4F /* texture_ref.png in Resources */,
+				F19B86F62410746A002A2A4F /* logo.jpg in Resources */,
 				F19B86DF24105D44002A2A4F /* Assets.xcassets in Resources */,
+				F19B86FA2410746A002A2A4F /* Bristol.png in Resources */,
+				F19B86F52410746A002A2A4F /* Bristol.dae in Resources */,
 				F19B86DD24105D44002A2A4F /* Main.storyboard in Resources */,
+				F19B86F72410746A002A2A4F /* B_787_8.dae in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,7 +250,9 @@
 			files = (
 				F19B86DA24105D44002A2A4F /* ViewController.swift in Sources */,
 				F19B86D624105D44002A2A4F /* AppDelegate.swift in Sources */,
+				F19B86EC2410742F002A2A4F /* Plane.swift in Sources */,
 				F19B86D824105D44002A2A4F /* SceneDelegate.swift in Sources */,
+				F19B86EA2410741B002A2A4F /* AirplaneFinder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

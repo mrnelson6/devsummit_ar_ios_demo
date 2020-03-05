@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9jd-tI-OWR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eeF-1C-KCv">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -8,45 +8,76 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="5ZS-KN-77B">
+        <scene sceneID="ihT-Qv-am2">
             <objects>
-                <viewController id="9jd-tI-OWR" customClass="ViewController" customModule="Tabletop" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="UlC-uU-6kg">
+                <viewController id="eeF-1C-KCv" customClass="ViewController" customModule="BaseApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XZF-OQ-lPz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5S-t5-nxA" customClass="ArcGISARView" customModule="ArcGISToolkit">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H1P-pM-V3w" customClass="ArcGISARView" customModule="ArcGISToolkit">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Move the phone slowly to begin tracking." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3LI-jX-nbZ">
-                                <rect key="frame" x="0.0" y="44" width="414" height="20.5"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpR-4S-84i" colorLabel="IBBuiltInLabel-Red">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="49" id="FAm-kd-Z4N"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="A2R-sK-7is"/>
+                                    <barButtonItem title="Calibrate" id="3DT-NA-fEY">
+                                        <connections>
+                                            <action selector="showCalibrationPopup:" destination="eeF-1C-KCv" id="9dD-t4-50W"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="bT6-cL-gQC"/>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calibrate to begin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xw-tF-tjx">
+                                <rect key="frame" x="0.0" y="44" width="414" height="21"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setting up ARKit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gu-LX-mPv">
+                                <rect key="frame" x="0.0" y="65" width="414" height="21"/>
                                 <color key="backgroundColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="C5S-t5-nxA" firstAttribute="top" secondItem="UlC-uU-6kg" secondAttribute="top" id="V9t-Oo-Wba"/>
-                            <constraint firstItem="3LI-jX-nbZ" firstAttribute="leading" secondItem="1At-b3-BXl" secondAttribute="leading" id="YXg-op-B0O"/>
-                            <constraint firstItem="3LI-jX-nbZ" firstAttribute="top" secondItem="1At-b3-BXl" secondAttribute="top" id="c0V-kc-B2k"/>
-                            <constraint firstAttribute="bottom" secondItem="C5S-t5-nxA" secondAttribute="bottom" id="e6d-eP-Jg1"/>
-                            <constraint firstAttribute="trailing" secondItem="C5S-t5-nxA" secondAttribute="trailing" id="jJ7-KT-4WU"/>
-                            <constraint firstItem="C5S-t5-nxA" firstAttribute="leading" secondItem="UlC-uU-6kg" secondAttribute="leading" id="vGK-ZX-fHi"/>
-                            <constraint firstItem="3LI-jX-nbZ" firstAttribute="trailing" secondItem="1At-b3-BXl" secondAttribute="trailing" id="zgu-r4-5DN"/>
+                            <constraint firstItem="5Gu-LX-mPv" firstAttribute="leading" secondItem="WLY-wp-9Ey" secondAttribute="leading" id="DPt-Xs-hrp"/>
+                            <constraint firstItem="3xw-tF-tjx" firstAttribute="leading" secondItem="WLY-wp-9Ey" secondAttribute="leading" id="HWG-32-nsX"/>
+                            <constraint firstItem="H1P-pM-V3w" firstAttribute="bottom" secondItem="dpR-4S-84i" secondAttribute="top" symbolic="YES" id="KDK-4l-D2R"/>
+                            <constraint firstItem="H1P-pM-V3w" firstAttribute="trailing" secondItem="XZF-OQ-lPz" secondAttribute="trailing" id="KF0-rr-Wyj"/>
+                            <constraint firstItem="dpR-4S-84i" firstAttribute="bottom" secondItem="XZF-OQ-lPz" secondAttribute="bottom" constant="-34" id="Oan-de-JxZ" colorLabel="IBBuiltInLabel-Gray"/>
+                            <constraint firstItem="WLY-wp-9Ey" firstAttribute="trailing" secondItem="5Gu-LX-mPv" secondAttribute="trailing" id="TgR-0a-jZK"/>
+                            <constraint firstItem="WLY-wp-9Ey" firstAttribute="trailing" secondItem="3xw-tF-tjx" secondAttribute="trailing" id="d9a-b8-dd1"/>
+                            <constraint firstItem="dpR-4S-84i" firstAttribute="trailing" secondItem="XZF-OQ-lPz" secondAttribute="trailing" id="dLA-it-9ON"/>
+                            <constraint firstItem="5Gu-LX-mPv" firstAttribute="top" secondItem="3xw-tF-tjx" secondAttribute="bottom" id="dfP-2T-pBH"/>
+                            <constraint firstItem="3xw-tF-tjx" firstAttribute="top" secondItem="WLY-wp-9Ey" secondAttribute="top" id="ecz-5b-hXa"/>
+                            <constraint firstItem="H1P-pM-V3w" firstAttribute="leading" secondItem="XZF-OQ-lPz" secondAttribute="leading" id="lBQ-ez-qgx"/>
+                            <constraint firstItem="H1P-pM-V3w" firstAttribute="top" secondItem="XZF-OQ-lPz" secondAttribute="top" id="raA-rk-d0R"/>
+                            <constraint firstItem="dpR-4S-84i" firstAttribute="leading" secondItem="XZF-OQ-lPz" secondAttribute="leading" id="xDn-ZI-Qjh"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="1At-b3-BXl"/>
+                        <viewLayoutGuide key="safeArea" id="WLY-wp-9Ey"/>
                     </view>
                     <connections>
-                        <outlet property="arView" destination="C5S-t5-nxA" id="WHE-j2-LSY"/>
-                        <outlet property="helpLabel" destination="3LI-jX-nbZ" id="9vf-8j-9Zz"/>
+                        <outlet property="arKitStatusLabel" destination="5Gu-LX-mPv" id="j5L-7Q-rhA"/>
+                        <outlet property="arView" destination="H1P-pM-V3w" id="WIg-r8-zQO"/>
+                        <outlet property="calibrationBBI" destination="3DT-NA-fEY" id="KlH-5f-R7f"/>
+                        <outlet property="helpLabel" destination="3xw-tF-tjx" id="FeI-hj-XkD"/>
+                        <outlet property="toolbar" destination="dpR-4S-84i" id="cfj-9m-Iwb"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2HS-rM-lx7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L3d-pB-kNm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-271" y="129"/>
+            <point key="canvasLocation" x="-35" y="169"/>
         </scene>
     </scenes>
 </document>
