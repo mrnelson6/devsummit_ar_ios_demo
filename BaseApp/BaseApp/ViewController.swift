@@ -62,10 +62,11 @@ class ViewController: UIViewController {
         
         graphics_overlay = AGSGraphicsOverlay()
         arView.sceneView.graphicsOverlays.add(graphics_overlay!)
-        plane_finder = AirplaneFinder(graphicsOverlay: graphics_overlay!)
+        plane_finder = AirplaneFinder(graphicsOverlay: graphics_overlay!, useRealPlanes: false)
         
         DispatchQueue.global(qos: .background).async {
-            self.animateTimer = Timer.scheduledTimer(timeInterval: 1.0 / 30.0, target: self, selector: #selector(self.timerAction), userInfo: nil, repeats: true)
+            // 1 / _updatesPerSecond in airplane finder
+            self.animateTimer = Timer.scheduledTimer(timeInterval: 1.0 / 60.0, target: self, selector: #selector(self.timerAction), userInfo: nil, repeats: true)
             let runLoop = RunLoop.current
             runLoop.add(self.animateTimer!, forMode: .default)
             runLoop.run()

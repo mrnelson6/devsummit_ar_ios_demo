@@ -15,22 +15,23 @@ class AirplaneFinder
     private var _largePlane3DSymbol : AGSModelSceneSymbol
     private var _graphicsOverlay : AGSGraphicsOverlay
     
-    private var  _updatesPerSecond : Int = 30;
+    private var  _updatesPerSecond : Int = 60;
     private var _secondsPerQuery : Int = 10;
     private var _secondsPerCleanup : Int = 30;
     public var _coordinateTolerance : Double = 0.5;
-    public var _center : AGSPoint
+    public var _center : AGSPoint?
     public var planes : [String : Plane]
+    private var _useRealPlanes : Bool
     
-    init(graphicsOverlay : AGSGraphicsOverlay)
+    init(graphicsOverlay : AGSGraphicsOverlay, useRealPlanes : Bool)
     {
         _graphicsOverlay = graphicsOverlay
         //_smallPlane3DSymbol = AGSSimpleMarkerSceneSymbol.sphere(with: UIColor.red, diameter: 400)
         //_largePlane3DSymbol = AGSSimpleMarkerSceneSymbol.sphere(with: UIColor.blue, diameter: 800)
         _smallPlane3DSymbol = AGSModelSceneSymbol(name: "B_787_8", extension: "dae", scale: 60.0)
         _largePlane3DSymbol = AGSModelSceneSymbol(name: "Bristol", extension: "dae", scale: 20.0)
-        _center = AGSPoint(x: -117.18, y: 33.5556, spatialReference: AGSSpatialReference.init(wkid: 4326))
         planes = [String : Plane]()
+        _useRealPlanes = useRealPlanes
         setupScene()
     }
     
@@ -54,7 +55,7 @@ class AirplaneFinder
     
     private func addPlanesViaAPI()
     {
-        let envelop = AGSEnvelope(center: _center, width: _coordinateTolerance, height: _coordinateTolerance)
+        let envelop = AGSEnvelope(center: _center!, width: _coordinateTolerance, height: _coordinateTolerance)
         let xMax = envelop.xMax
         let xMin = envelop.xMin
         let yMax = envelop.yMax
@@ -204,12 +205,20 @@ class AirplaneFinder
     private var outstandingRequest : Bool = false
     public func animatePlanes()
     {
+        if(_center == nil)
+        {
+            return
+        }
+        if(!_useRealPlanes && updateCounter == -1)
+        {
+            generateRandomPlanes()
+        }
         if(outstandingRequest)
         {
             return
         }
         updateCounter += 1
-        if (updateCounter % (_secondsPerCleanup * _updatesPerSecond) == 0)
+        if (_useRealPlanes && (updateCounter % (_secondsPerCleanup * _updatesPerSecond) == 0))
         {
             var planes_to_remove = [String]()
             let unixTimestamp = Int(NSDate().timeIntervalSince1970)
@@ -226,7 +235,7 @@ class AirplaneFinder
                 planes[remove_callsign] = nil
             }
         }
-        if (updateCounter % (_updatesPerSecond * _secondsPerQuery) == 0)
+        if (_useRealPlanes && (updateCounter % (_updatesPerSecond * _secondsPerQuery) == 0))
         {
             addPlanesViaAPI();
         }
@@ -237,7 +246,7 @@ class AirplaneFinder
                 let point = plane.value._graphic.geometry as! AGSPoint
                 var point_array =  [AGSPoint]()
                 point_array.append(point)
-                let distance = plane.value._velocity / Double(_updatesPerSecond)
+                let distance = 10 * plane.value._velocity / Double(_updatesPerSecond)
                 let updated_point = AGSGeometryEngine.geodeticMove(point_array, distance: distance, distanceUnit: .meters(), azimuth: plane.value._heading, azimuthUnit: .degrees(), curveType: .geodesic)![0]
                 let delta_z = updated_point.z + (plane.value._verticalRateOfChange / Double(_updatesPerSecond))
                 let new_location = AGSPoint(x: updated_point.x, y: updated_point.y, z: delta_z, spatialReference: AGSSpatialReference.init(wkid: 4326))
@@ -246,4 +255,42 @@ class AirplaneFinder
         }
     }
     
+    
+    private func generateRandomPlanes()
+    {
+        let numPlanes = 20
+        let unixTimestamp = Int(NSDate().timeIntervalSince1970)
+        for i in 0...numPlanes
+        {
+            var callsign = ""
+            var gr : AGSGraphic
+            var bigPlane : Bool
+            let heading = Double.random(in: 0...359)
+            let velocity = Double.random(in: 100...300)
+            let x = _center!.x + Double.random(in: -0.5...0.5)
+            let y = _center!.y + Double.random(in: -0.5...0.5)
+            let z = _center!.z + Double.random(in: 800...9000)
+            let point = AGSPoint(x: x, y: y, z: z, spatialReference: _center!.spatialReference)
+            if(i < numPlanes / 4)
+            {
+                callsign = "N" + String(i)
+                gr = AGSGraphic(geometry: point, symbol:_smallPlane3DSymbol)
+                gr.attributes["HEADING"] = heading + 180
+                gr.attributes["CALLSIGN"] = callsign
+                bigPlane = false
+            }
+            else
+            {
+                callsign = "ARC" + String(i)
+                gr = AGSGraphic(geometry: point, symbol:_largePlane3DSymbol)
+                gr.attributes["HEADING"] = heading
+                gr.attributes["CALLSIGN"] = callsign
+                bigPlane = true
+            }
+
+            let new_plane = Plane(graphic: gr, velocity: velocity, verticalRateOfChange: 0.0, heading: heading, lastUpdate: unixTimestamp, bigPlane: bigPlane, callsign: callsign)
+            planes[callsign] = new_plane
+            _graphicsOverlay.graphics.add(gr)
+        }
+    }
 }
